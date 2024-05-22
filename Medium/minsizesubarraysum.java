@@ -5,41 +5,23 @@ import java.util.ArrayList;
 
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        ArrayList<Integer> subarray = new ArrayList<>();
-        int currSum = 0;
-        int pointer = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (currSum + nums[i] < target) {
-                currSum += nums[i];
-                subarray.add(nums[i]);
-            } else {
-                currSum += nums[i];
-                subarray.add(nums[i]);
-
-                while (currSum - subarray.get(pointer) >= target) {
-                    currSum -= subarray.get(pointer);
-                    subarray.remove(pointer);
+            int minLength = Integer.MAX_VALUE;
+            int leftPointer = 0;
+            int currSum = 0;
+    
+            for (int rightPointer = 0; rightPointer < nums.length; rightPointer++) {
+                currSum += nums[rightPointer];
+    
+                while (currSum >= target) {
+                    minLength = Math.min(minLength, rightPointer - leftPointer + 1);
+                    currSum -= nums[leftPointer];
+                    leftPointer++;
                 }
-                
-                System.out.println("Curr sum is currently: " + currSum);
-                System.out.println("Pointer is currently: " + pointer);
-
-                
-                for (int t : subarray) {
-                    System.out.println("Content is: "  + t);
-                }
-
-                System.out.println("------------------------");
-                pointer = 0;
             }
-        }
-
-        if (subarray.size() != 0 && currSum >= target) {
-            return subarray.size();        
-        } else {
-            return 0;
-        }
+    
+            return minLength == Integer.MAX_VALUE ? 0 : minLength;
+    
     
     }
 
