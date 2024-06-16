@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -49,7 +50,7 @@ class Solution {
         char[] arrT = t.toCharArray();
         int pointerS = arrS.length - 1;
         int pointerT = arrT.length - 1;
-
+        // this is so that both arrays need to be processed
         while((pointerS >= 0) || (pointerT >= 0)) {
             int counterS = 0;
             int counterT = 0;
