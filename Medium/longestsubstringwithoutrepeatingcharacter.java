@@ -41,8 +41,11 @@ class Solution {
                 if (!hm.containsKey(arrS[rightPointer])) {
                     hm.put(arrS[rightPointer], true);
                     rightPointer++;
+                    // This is okay because the above already increment the count of rightPointer
                     maxCount = Math.max(maxCount, (rightPointer - leftPointer));
                 } else {
+                    // This is so that it will remove until the point when the element that 
+                    //is causing the duplicate will be removed while the rightpointer will be stationery while this is happening
                     hm.remove(arrS[leftPointer]);
                     leftPointer++;
                 }
